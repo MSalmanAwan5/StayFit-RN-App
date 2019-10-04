@@ -14,7 +14,7 @@ function entries(state = {},action) {
                 ...action.entry
             }
         default:
-            break;
+           return state
     }
 }
 export default entries

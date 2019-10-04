@@ -6,7 +6,7 @@ import Stepper from './Stepper'
 import DateHeader from './DateHeader'
 import {submitEntry,removeEntry} from '../utils/api'
 import {connect} from 'react-redux'
-import {AddEntry, addEntry} from '../actions'
+import {addEntry} from '../actions'
 import { Ionicons } from '@expo/vector-icons'
 function SubmitBtn({onPress}) {
     return(
@@ -69,6 +69,7 @@ class AddEntry extends Component{
         })
 
         submitEntry({key,entry})
+        this.props.alreadyLogged = true
     }
 
     reset = ()=>{
@@ -77,6 +78,7 @@ class AddEntry extends Component{
         this.props.dispatch(addEntry({
             [key]:getDailyReminder()
         }))
+
     }
     render()
     {   
@@ -131,7 +133,7 @@ class AddEntry extends Component{
 function mapStateToProps(state) {
     const key = timeToString()
     return {
-    alreadyLogged : state[key] && typeof(state[key]) === 'undefined'
+    alreadyLogged : state[key] !== 'undefined' && typeof state[key].today === 'undefined',
     }
 }
 

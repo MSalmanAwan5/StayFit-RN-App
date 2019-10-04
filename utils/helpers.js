@@ -46,7 +46,7 @@ export function isBetween (num, x, y) {
 
   export function getMetricMetaInfo(metric = null)
   {
-      info = {
+      var info = {
           run:{
               displayName:'Run',
               unit:'miles',
@@ -143,6 +143,6 @@ export function isBetween (num, x, y) {
   export function getDailyReminder()
   {
     return{
-      "today":"👋 hey! dont forget to log your data today!"
+      today:"👋 hey! dont forget to log your data today!"
     }
   }

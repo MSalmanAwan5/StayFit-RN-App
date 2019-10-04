@@ -1,16 +1,16 @@
 import React from 'react';
 import {Slider, StyleSheet, Text, View } from 'react-native';
 import AddEntry from './components/AddEntry'
-import Provider from 'react-redux'
+import {Provider} from 'react-redux'
 import {createStore} from 'redux'
-import entries from './reducers'
+import reducer from './reducers'
 export default class App extends React.Component {
     state = {
       value:10
     }
    render(){
      return(
-        <Provider store={createStore(entries)}>
+        <Provider store={createStore(reducer)}>
           <View>
             <AddEntry/>
           </View>
