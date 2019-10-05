@@ -8,6 +8,7 @@ import {submitEntry,removeEntry} from '../utils/api'
 import {connect} from 'react-redux'
 import {addEntry} from '../actions'
 import { Ionicons } from '@expo/vector-icons'
+import { Platform } from '@unimodules/core'
 function SubmitBtn({onPress}) {
     return(
         <TouchableOpacity onPress={onPress}>
@@ -86,7 +87,11 @@ class AddEntry extends Component{
         if (this.props.alreadyLogged)
         return(
             <View>
-                <Ionicons name='ios-happy-outline'
+                {Platform.OS === 'ios'}
+                <Ionicons name='ios-happy'
+                size={100}/>
+                ?
+                <Ionicons name='md-happy'
                 size={100}/>
                 <Text>
                     You already logged your information for today!
@@ -133,7 +138,7 @@ class AddEntry extends Component{
 function mapStateToProps(state) {
     const key = timeToString()
     return {
-    alreadyLogged : state[key] !== 'undefined' && typeof state[key].today === 'undefined',
+    alreadyLogged : state[key]  && typeof state[key].today === 'undefined',
     }
 }
 
