@@ -45,12 +45,13 @@ export function isBetween (num, x, y) {
   }
   const styles = StyleSheet.create({
     iconContainer:{
-      height:50,
-      width:50,
-      marginRight:20,
-      borderRadius:8,
-      alignItems:'center',
-      justifyContent:'center',
+     padding: 5,
+    borderRadius: 8,
+    width: 50,
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 20
     }
 
     }
