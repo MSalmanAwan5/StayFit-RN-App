@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import {View, Text,  TouchableOpacity, Platform } from 'react-native'
+import {View, Text, StyleSheet,  TouchableOpacity, Platform } from 'react-native'
 import {getMetricMetaInfo, timeToString, getDailyReminder} from '../utils/helpers' 
 import MySlider from './Slider'
 import Stepper from './Stepper'
@@ -8,6 +8,7 @@ import {submitEntry,removeEntry} from '../utils/api'
 import {connect} from 'react-redux'
 import {addEntry} from '../actions'
 import { Ionicons } from '@expo/vector-icons'
+import {white, purple} from '../utils/colors'
 function SubmitBtn({onPress}) {
     return(
         <TouchableOpacity 
@@ -102,7 +103,7 @@ class AddEntry extends Component{
         )
         else 
         return(
-            <View style={styles.row}>
+            <View style={styles.container}>
                 <DateHeader date={(new Date()).toLocaleDateString()}/>
                {Object.keys(metaInfo).map((key)=>{
                    const {type,getIcon,...rest} = metaInfo[key]

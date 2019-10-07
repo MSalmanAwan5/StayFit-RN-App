@@ -1,20 +1,65 @@
 import React from 'react'
-import {View, Text,TouchableOpacity} from 'react-native'
+import {View, Text,TouchableOpacity, Platform, StyleSheet} from 'react-native'
 import {FontAwesome, Entypo} from '@expo/vector-icons'
-export default function Stepper({value,increment,decrement}){
+import { purple, gray, white } from '../utils/colors'
+
+export default function Stepper({ max, unit, step,value,increment,decrement}){
     return(
-        <View>
-        <View>
-            <TouchableOpacity onPress={decrement}>
-                <FontAwesome name='minus' color='black'/>
-              
+        <View style={[styles.row, {justifyContent: 'space-between'}]}>
+      {Platform.OS === 'ios'
+        ? <View style={{flexDirection: 'row'}}>
+            <TouchableOpacity
+              style={[styles.iosBtn, {borderTopRightRadius: 0, borderBottomRightRadius: 0}]}
+              onPress={decrement}>
+                <Entypo name='minus' size={30} color={purple} />
             </TouchableOpacity>
-            <TouchableOpacity onPress={increment}>
-                <FontAwesome name='plus' color='black'/>
-               
+            <TouchableOpacity
+              style={[styles.iosBtn, {borderTopLeftRadius: 0, borderBottomLeftRadius: 0, borderLeftWidth: 0}]}
+              onPress={increment}>
+                <Entypo name='plus' size={30} color={purple} />
             </TouchableOpacity>
-        </View>
-            <Text>{value}</Text>
-        </View>
+          </View>
+        : <View style={{flexDirection: 'row'}}>
+            <TouchableOpacity style={styles.androidBtn} onPress={decrement}>
+              <FontAwesome name='minus' size={30} color={white} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.androidBtn} onPress={increment}>
+              <FontAwesome name='plus' size={30} color={white} />
+            </TouchableOpacity>
+          </View>}
+      <View style={styles.metricCounter}>
+        <Text style={{fontSize: 24, textAlign: 'center'}}>{value}</Text>
+        <Text style={{fontSize: 18, color: gray}}>{unit}</Text>
+      </View>
+    </View>
+   
     )
 }
+
+const styles = StyleSheet.create({
+  row: {
+    flexDirection: 'row',
+    flex: 1,
+    alignItems: 'center'
+  },
+  androidBtn: {
+    margin: 5,
+    backgroundColor: purple,
+    padding: 10,
+    borderRadius: 2,
+  },
+  iosBtn: {
+    backgroundColor: white,
+    borderColor: purple,
+    borderWidth: 1,
+    borderRadius: 3,
+    padding: 5,
+    paddingLeft: 25,
+    paddingRight: 25,
+  },
+  metricCounter: {
+    width: 85,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+})
