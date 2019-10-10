@@ -1,6 +1,6 @@
 import { React } from "react";
 import {View, StyleSheet, Text} from 'react-native';
-import DateHeader, { DataHeader } from "./DateHeader";
+import DateHeader from "./DateHeader";
 import {getMetricMetaInfo} from '../utils/helpers'
 import {gray } from '../utils/colors'
 

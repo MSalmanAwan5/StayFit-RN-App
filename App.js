@@ -1,5 +1,5 @@
 import React from 'react';
-import {Slider, StyleSheet, Text, View } from 'react-native';
+import {Slider, StyleSheet, Text, View, Platform, StatusBar } from 'react-native';
 import AddEntry from './components/AddEntry'
 import History from './components/History'
 import {Provider} from 'react-redux'
@@ -8,19 +8,42 @@ import reducer from './reducers'
 import {TabNavigator} from 'react-navigation'
 import {purple, white } from './utils/colors'
 import {FontAwesome, Ionicons} from '@expo/vector-icons'  
+import {Constants} from 'expo'
 
+function myStatusBar(backgroundColor, ...props){
+  return(
+    <View style={{backgroundColor,height:Constants.statusBarHeight}}>
+      <StatusBar translucent backgroundColor={backgroundColor}/>
+    </View>
+  )
+}
+
+const AddEntryScreen=()=>{
+  return(
+    <View style={{flex:1}}>
+      <AddEntry/>
+    </View>
+  )
+}
+const HistoryScreen=()=>{
+  return(
+    <View style={{flex:1}}>
+      <History/>
+    </View>
+  )
+}
 
 const Tabs = TabNavigator(
   {
     History:{
-      screen:History,
+      screen:HistoryScreen,
       navigationOptions:{
         tabBarLabel:'History',
         tabBarIcon:({tintColor}) => <Ionicons name='ios-bookmarks' size={30} color={tintColor}/>,
       }
     },
     AddEntry:{
-      screen:AddEntry,
+      screen:AddEntryScreen,
       navigationOptions:{
         tabBarLabel:'Add Entry',
         tabBarIcon:({tintColor})=> <FontAwesome name='plus-square' size={30} color={tintColor}/>
@@ -55,7 +78,7 @@ class App extends React.Component {
      return(
         <Provider store={createStore(reducer)}>
           <View style={{flex:1}}>
-            <View style={{height:20}}/>
+            <myStatusBar backgroundColor={purple}/>
             <Tabs/>
             
           </View>
