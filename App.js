@@ -9,15 +9,9 @@ import { createAppContainer } from 'react-navigation';
 import {createBottomTabNavigator} from 'react-navigation-tabs'
 import {purple, white } from './utils/colors'
 import {FontAwesome, Ionicons} from '@expo/vector-icons'  
-import {Constants} from 'expo'
 
-function myStatusBar(backgroundColor, ...props){
-  return(
-    <View style={{backgroundColor,height:Constants.statusBarHeight}}>
-      <StatusBar translucent backgroundColor={backgroundColor}/>
-    </View>
-  )
-}
+
+
 
 const AddEntryScreen=()=>{
   return(
@@ -81,7 +75,7 @@ export default class App extends React.Component {
      return(
         <Provider store={createStore(reducer)}>
           <View style={{flex:1}}>
-            <myStatusBar backgroundColor={purple}/>
+            <StatusBar translucent backgroundColor={purple}/>
            <AppContainer/>
             
           </View>
@@ -90,12 +84,3 @@ export default class App extends React.Component {
      )};
 }
 
-const styles = StyleSheet.create({
-  container:{
-    flex:1,
-    marginLeft:10,
-    marginRight:10,
-    alignItems:"stretch",
-    justifyContent:"center"
-  }
-})

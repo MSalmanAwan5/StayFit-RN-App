@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, Text, StyleSheet, Platform, TouchableOpacity, AppLoading} from 'react-native'
+import {View, Text, StyleSheet, Platform, TouchableOpacity} from 'react-native'
 import {connect} from 'react-redux'
 import {addEntry, receiveEntries} from '../actions/index'
 import {getDailyReminder,timeToString} from '../utils/helpers'
@@ -8,6 +8,7 @@ import UdaciFitnessCalendar from 'udacifitness-calendar'
 import {white} from '../utils/colors'
 import DateHeader from './DateHeader'
 import MetricCard from './metricCard'
+import {AppLoading} from 'expo'
 
 class History extends React.Component{
   state={
