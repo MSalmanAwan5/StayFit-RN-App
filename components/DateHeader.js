@@ -1,9 +1,9 @@
 import React from 'react'
 import {Text} from 'react-native'
-
+import {purple} from '../utils/colors'
 export default function DateHeader({date}){
     return(
-    <Text>
+    <Text style={{fontSize:30,color:{purple}}}>
         {date}
     </Text>
     )}

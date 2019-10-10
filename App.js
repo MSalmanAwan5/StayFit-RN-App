@@ -7,6 +7,7 @@ import {createStore} from 'redux'
 import reducer from './reducers'
 import { createAppContainer } from 'react-navigation';
 import {createBottomTabNavigator} from 'react-navigation-tabs'
+import {createStackNavigator} from 'react-navigation-stack'
 import {purple, white } from './utils/colors'
 import {FontAwesome, Ionicons} from '@expo/vector-icons'  
 
@@ -61,11 +62,27 @@ const Tabs = createBottomTabNavigator(
         }
       }
     }
-}
+})
 
-)
+const MainNavigator = createAppContainer(createStackNavigator({
+  home: {
+    screen: Tabs,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  EntryDetail: {
+    screen: EntryDetail,
+    navigationOptions: ({ navigation }) => ({
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      },
+    }),
+  },
+}));
 
-const AppContainer = createAppContainer(Tabs)
+
 
 export default class App extends React.Component {
     state = {
@@ -76,7 +93,7 @@ export default class App extends React.Component {
         <Provider store={createStore(reducer)}>
           <View style={{flex:1}}>
             <StatusBar translucent backgroundColor={purple}/>
-           <AppContainer/>
+           <MainNavigator/>
             
           </View>
         </Provider>

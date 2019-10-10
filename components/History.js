@@ -34,9 +34,12 @@ class History extends React.Component{
           { today ? 
             <View>
               <DateHeader date={formattedDate}></DateHeader>
-              <Text style={styles.noDateTxt}>today</Text>
+              <Text style={styles.noDateTxt}>{today}</Text>
             </View> :
-            <TouchableOpacity onPress={()=>console.log("pressed!")}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate(
+              'EntryDetail',
+              { entryId: key }
+            )}>
               <MetricCard metrics={metrices} date={formattedDate}/>
             </TouchableOpacity>
           }

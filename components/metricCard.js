@@ -1,4 +1,4 @@
-import { React } from "react";
+import  React  from "react";
 import {View, StyleSheet, Text} from 'react-native';
 import DateHeader from "./DateHeader";
 import {getMetricMetaInfo} from '../utils/helpers'
