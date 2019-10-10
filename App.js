@@ -5,7 +5,8 @@ import History from './components/History'
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 import reducer from './reducers'
-import {TabNavigator} from 'react-navigation'
+import { createAppContainer } from 'react-navigation';
+import {createBottomTabNavigator} from 'react-navigation-tabs'
 import {purple, white } from './utils/colors'
 import {FontAwesome, Ionicons} from '@expo/vector-icons'  
 import {Constants} from 'expo'
@@ -33,7 +34,7 @@ const HistoryScreen=()=>{
   )
 }
 
-const Tabs = TabNavigator(
+const Tabs = createBottomTabNavigator(
   {
     History:{
       screen:HistoryScreen,
@@ -70,7 +71,9 @@ const Tabs = TabNavigator(
 
 )
 
-class App extends React.Component {
+const AppContainer = createAppContainer(Tabs)
+
+export default class App extends React.Component {
     state = {
       value:10
     }
@@ -79,7 +82,7 @@ class App extends React.Component {
         <Provider store={createStore(reducer)}>
           <View style={{flex:1}}>
             <myStatusBar backgroundColor={purple}/>
-            <Tabs/>
+           <AppContainer/>
             
           </View>
         </Provider>
