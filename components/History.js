@@ -29,6 +29,7 @@ class History extends React.Component{
   }
 
   renderItem = ({today, ...metrices},formattedDate, key)=>{
+    const {navigation} = this.props;
       return(
       <View style={styles.item}>
           { today ? 
@@ -36,9 +37,8 @@ class History extends React.Component{
               <DateHeader date={formattedDate}></DateHeader>
               <Text style={styles.noDateTxt}>{today}</Text>
             </View> :
-            <TouchableOpacity onPress={() => this.props.navigation.navigate(
-              'EntryDetail',
-              { entryId: key }
+            <TouchableOpacity onPress={() => navigation.navigate({routeName:'EntryDetail',entryId:key}
+              
             )}>
               <MetricCard metrics={metrices} date={formattedDate}/>
             </TouchableOpacity>

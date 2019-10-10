@@ -10,36 +10,22 @@ import {createBottomTabNavigator} from 'react-navigation-tabs'
 import {createStackNavigator} from 'react-navigation-stack'
 import {purple, white } from './utils/colors'
 import {FontAwesome, Ionicons} from '@expo/vector-icons'  
+import {EntryDetail} from './components/EntryDetail'
 
 
 
-
-const AddEntryScreen=()=>{
-  return(
-    <View style={{flex:1}}>
-      <AddEntry/>
-    </View>
-  )
-}
-const HistoryScreen=()=>{
-  return(
-    <View style={{flex:1}}>
-      <History/>
-    </View>
-  )
-}
 
 const Tabs = createBottomTabNavigator(
   {
     History:{
-      screen:HistoryScreen,
+      screen:History,
       navigationOptions:{
         tabBarLabel:'History',
         tabBarIcon:({tintColor}) => <Ionicons name='ios-bookmarks' size={30} color={tintColor}/>,
       }
     },
     AddEntry:{
-      screen:AddEntryScreen,
+      screen:AddEntry,
       navigationOptions:{
         tabBarLabel:'Add Entry',
         tabBarIcon:({tintColor})=> <FontAwesome name='plus-square' size={30} color={tintColor}/>
@@ -92,7 +78,10 @@ export default class App extends React.Component {
      return(
         <Provider store={createStore(reducer)}>
           <View style={{flex:1}}>
+            <View style={{backgroundColor:purple}}>
             <StatusBar translucent backgroundColor={purple}/>
+            </View>
+           
            <MainNavigator/>
             
           </View>
