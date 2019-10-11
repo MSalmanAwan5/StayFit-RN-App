@@ -79,7 +79,7 @@ export default class App extends React.Component {
         <Provider store={createStore(reducer)}>
           <View style={{flex:1}}>
             <View style={{backgroundColor:purple}}>
-            <StatusBar translucent backgroundColor={purple}/>
+            <StatusBar translucent color={purple}/>
             </View>
            
            <MainNavigator/>
