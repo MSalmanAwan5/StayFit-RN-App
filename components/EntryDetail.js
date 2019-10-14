@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
-import { timeToString, getDailyReminderValue } from '../utils/helpers'
+import { timeToString, getDailyReminder } from '../utils/helpers'
 import MetricCard from './MetricCard'
 import { white } from '../utils/colors'
 import { addEntry } from '../actions'
@@ -33,9 +33,9 @@ class EntryDetail extends Component {
     return (
       <View style={styles.container}>
         <MetricCard metrics={metrics} />
-        <View style={{margin: 20}}>
+        <View style={styles.center}>
           <TouchableOpacity  onPress={this.reset}>
-            RESET
+            <Text>RESET</Text>
           </TouchableOpacity>
         </View>
         
@@ -67,7 +67,7 @@ function mapDispatchToProps (dispatch, { navigation }) {
   return {
     remove: () => dispatch(addEntry({
       [entryId]: timeToString() === entryId
-        ? getDailyReminderValue()
+        ? getDailyReminder()
         : null
     })),
     goBack: () => navigation.goBack(),
@@ -78,3 +78,13 @@ function mapDispatchToProps (dispatch, { navigation }) {
 export default connect(
   mapStateToProps,mapDispatchToProps
 )(EntryDetail) 
+
+const styles = StyleSheet.create({
+  center:{
+    flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginLeft: 30,
+      marginRight: 30,
+  }
+})

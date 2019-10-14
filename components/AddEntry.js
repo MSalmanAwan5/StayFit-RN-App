@@ -9,6 +9,7 @@ import {connect} from 'react-redux'
 import {addEntry} from '../actions'
 import { Ionicons } from '@expo/vector-icons'
 import {white, purple} from '../utils/colors'
+import { NavigationActions } from 'react-navigation'
 function SubmitBtn({onPress}) {
     return(
         <TouchableOpacity 
@@ -70,9 +71,8 @@ class AddEntry extends Component{
             eat:0,
             sleep:0,
         })
-
+        this.toHome()
         submitEntry({key,entry})
-        this.props.alreadyLogged = true
     }
 
     reset = ()=>{
@@ -81,8 +81,12 @@ class AddEntry extends Component{
         this.props.dispatch(addEntry({
             [key]:getDailyReminder()
         }))
+        this.toHome()
 
     }
+    toHome = () => {
+        this.props.navigation.dispatch(NavigationActions.back({key: 'AddEntry'}))
+      }
     render()
     {   
         const metaInfo = getMetricMetaInfo()

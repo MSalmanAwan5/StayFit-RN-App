@@ -1,5 +1,6 @@
 import React from 'react';
 import {Slider, StyleSheet, Text, View, Platform, StatusBar } from 'react-native';
+import EntryDetail from './components/EntryDetail'
 import AddEntry from './components/AddEntry'
 import History from './components/History'
 import {Provider} from 'react-redux'
@@ -10,7 +11,7 @@ import {createBottomTabNavigator} from 'react-navigation-tabs'
 import {createStackNavigator} from 'react-navigation-stack'
 import {purple, white } from './utils/colors'
 import {FontAwesome, Ionicons} from '@expo/vector-icons'  
-import {EntryDetail} from './components/EntryDetail'
+
 
 
 
