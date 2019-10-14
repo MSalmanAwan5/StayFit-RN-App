@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { timeToString, getDailyReminder } from '../utils/helpers'
-import MetricCard from './MetricCard'
+import MetricCard from './metricCard'
 import { white } from '../utils/colors'
 import { addEntry } from '../actions'
 import { removeEntry } from '../utils/api'
@@ -50,6 +50,13 @@ const styles = StyleSheet.create({
     backgroundColor: white,
     padding: 15,
   },
+  center:{
+    flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginLeft: 30,
+      marginRight: 30,
+  }
 })
 
 function mapStateToProps (state, { navigation }) {
@@ -79,12 +86,3 @@ export default connect(
   mapStateToProps,mapDispatchToProps
 )(EntryDetail) 
 
-const styles = StyleSheet.create({
-  center:{
-    flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginLeft: 30,
-      marginRight: 30,
-  }
-})
