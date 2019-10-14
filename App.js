@@ -12,7 +12,7 @@ import {createStackNavigator} from 'react-navigation-stack'
 import {purple, white } from './utils/colors'
 import {FontAwesome, Ionicons} from '@expo/vector-icons'  
 import Live from './components/Live'
-
+import { setLocalNotification } from './utils/helpers'
 
 
 
@@ -80,6 +80,10 @@ const MainNavigator = createAppContainer(createStackNavigator({
 
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
+  
     state = {
       value:10
     }
